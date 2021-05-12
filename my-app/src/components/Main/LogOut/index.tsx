@@ -29,7 +29,7 @@ const LogOut = () => {
       {authRedirect}
       <div className={'header'}>
         <h1 className={'titleHeader'}> Task Manager</h1>
-        <Button onClick={clickHandler} className={'btn'}>Log out</Button>
+        <Button onClick={clickHandler}>Log out</Button>
       </div>
     </section>
   );

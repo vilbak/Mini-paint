@@ -2,7 +2,7 @@ import Tool from './index'
 
 export default class Brush extends Tool{
   constructor(canvas) {
-  super(canvas)
+    super(canvas)
     this.listen()
   }
 
@@ -13,7 +13,7 @@ export default class Brush extends Tool{
   }
 
   mouseUpHandler(e){
-this.mouseDown = false
+    this.mouseDown = false
   }
 
   mouseDownHandler(e){

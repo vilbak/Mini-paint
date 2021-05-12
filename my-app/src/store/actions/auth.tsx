@@ -28,7 +28,7 @@ export const authFail = (error:any) => {
   }
 }
 
-export const auth = (email:any, password:any, isSignUp:any)=>{
+export const auth = (email:any, password:any, isSignUp:any,userName:any)=>{
   return{
     type:actionTypes.AUTH,
     payload: {email, password,isSignUp}

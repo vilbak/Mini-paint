@@ -14,6 +14,7 @@ import { setAddPainting, startEditPainting } from '../../../../store/actions/pai
 
 const Canvas = (props: any) => {
 
+
   const [editPage, setEditPage] = useState(!!props.paint);
   const history = useHistory();
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -21,6 +22,7 @@ const Canvas = (props: any) => {
 
   const tools = useSelector((state: any) => state.tools);
   const userId = useSelector((state: any) => state.auth.userId);
+
 
   useEffect(() => {
     new Brush(canvasRef.current);
@@ -67,12 +69,14 @@ const Canvas = (props: any) => {
   };
 
   return (
-    <div>
+    <div className={'container'}>
       <Toolbar />
+
       <div className={'canvas'}>
         <canvas ref={canvasRef} width={600} height={400} />
+        <Button className={'btn'} onClick={handleSave}>{editPage ? 'Edit the painting' : 'Save the painting'}</Button>
       </div>
-      <Button onClick={handleSave}>{editPage ? 'Edit the painting' : 'Save the painting'}</Button>
+
     </div>
   );
 };

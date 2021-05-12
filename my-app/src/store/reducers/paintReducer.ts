@@ -12,8 +12,13 @@ const paintReducer = (state = initialState, action: any) => {
         action.painting,
       ];
     case  actionTypes.SET_PAINTINGS:
+      console.log('paintings', action.payload);
       // @ts-ignore
-      return action.paintings;
+      return [
+        ...action.payload.paintings,
+      ];
+
+
     case actionTypes.REMOVE_PAINTING :
       return state.filter(({ id }: any) => id !== action.id);
     case  actionTypes.EDIT_PAINTING:

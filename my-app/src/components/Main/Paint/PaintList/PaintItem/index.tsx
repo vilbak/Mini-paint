@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Card from '../../../../UI/Card';
 import './style.scss';
 import Button from '../../../../UI/Button';
@@ -24,7 +24,6 @@ const PaintItem = (props: any) => {
   };
 
 
-
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
@@ -32,13 +31,14 @@ const PaintItem = (props: any) => {
     draw(context);
   }, []);
   return (
-    <Card className={'container'}>
-      <canvas width={600} height={400} ref={canvasRef} />
-      )
-      <Button onClick={handleDelete}> Delete the painting</Button>
-      <Button>
-        <Link className={'editButton'} to={`/edit/${props.id}`}> Edit</Link>
-      </Button>
+    <Card className={'containerItem'}>
+      <canvas width={250} height={250} ref={canvasRef} />
+      <div className={'buttonContainer'}>
+        <Button className={'deleteButton'} onClick={handleDelete}> Delete the painting</Button>
+        <Button className={'editButton'}>
+          <Link className={'editLink'} to={`/edit/${props.id}`}> Edit</Link>
+        </Button>
+      </div>
     </Card>)
     ;
 };

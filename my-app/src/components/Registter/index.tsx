@@ -1,19 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../UI/Card';
 import './style.css';
 import { auth } from '../../store/actions';
 import Button from '../UI/Button';
-
+import Spinner from '../UI/Spinner/';
 
 const Register: React.FC = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const authenticate = useSelector((state: any) => state.auth.authenticated);
+  const loading = useSelector((state: any) => state.auth.loading);
   const { register, handleSubmit } = useForm();
-
 
   /* function for auth */
   const clickHandler = async (data: any) => {
@@ -22,21 +23,19 @@ const Register: React.FC = () => {
       try {
         // @ts-ignore
         dispatch(auth(data.email, data.password));
+
       } catch (e) {
         console.error(e);
       }
     }
   };
-
-  let authRedirect = null;
-
   if (authenticate) {
-    authRedirect = <Redirect to={'/main'} />;
+    history.push('/main');
   }
 
-  return (
+
+  return ((loading ? <Spinner /> :
     <Card className={'login'}>
-      {authRedirect}
       <form onSubmit={handleSubmit(clickHandler)}>
         <div
           className={'control'}
@@ -49,6 +48,7 @@ const Register: React.FC = () => {
             placeholder="E-mail"
           />
         </div>
+
         <div
           className={`control`}
         >
@@ -70,15 +70,26 @@ const Register: React.FC = () => {
             type="password"
             placeholder="Confirm Password"
           />
+          <div
+            className={'control'}
+          >
+            <label htmlFor="UserName">UserName</label>
+            <input
+              {...register('userName')}
+              className={'input'}
+              type="userName"
+              placeholder="UserName"
+            />
+          </div>
         </div>
         <div className={'actions'}>
           <Button type="submit" className={'btn'}>
             Sign Up
           </Button>
-          <Link className={'link'} to="/login">Switch to Login</Link>
+          <Link className={'btn_login'} to="/login">Switch to Login</Link>
         </div>
       </form>
-    </Card>);
+    </Card>));
 
 };
 

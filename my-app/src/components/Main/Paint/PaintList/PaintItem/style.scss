@@ -1,4 +1,33 @@
-.container {
-    display: flex
+.containerItem {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+}
+.buttonContainer{
+    display: flex;
+    flex-flow: column;
+}
+.deleteButton{
+    background-color: #8b0000;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.deleteButton:hover,
+.deleteButton:active {
+    background: #8b2300;
+    border-color: black;
+}
+.editButton{
+    background-color: #CCCC00;
+    margin-left: 10px;
+}
 
+.editButton:hover,
+.editButton:active {
+    background: #FFFF00;
+    border-color: black;
+}
+.editLink{
+    text-decoration: none;
+    color:white;
 }

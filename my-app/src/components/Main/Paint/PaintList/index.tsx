@@ -15,6 +15,7 @@ export const PaintList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+
     dispatch(startSetPaintings(userId));
 
   }, []);
@@ -22,13 +23,13 @@ export const PaintList = () => {
 
   return (
     <div className={'contentContainer'}>
-      <Button>
+      <Button className={'createButton'}>
         <Link className={'link'} to={'/paint'}>Create a new image</Link>
       </Button>
       <div className={'listHeader'}>
-        {image.map((image: any) => {
-          return <PaintItem key={image.id} {...image} />;
-        })}
+        {/*{image.map((image: any) => {*/}
+        {/*  return <PaintItem key={image.id} {...image} />;*/}
+        {/*})}*/}
       </div>
     </div>
   );

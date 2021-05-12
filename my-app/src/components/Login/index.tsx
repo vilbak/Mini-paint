@@ -1,10 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../UI/Card';
-
+import Spinner from '../UI/Spinner/';
 import './style.css';
 import { auth } from '../../store/actions';
 import Button from '../UI/Button';
@@ -13,8 +13,10 @@ import Button from '../UI/Button';
 const Login: React.FC = () => {
   const isSignUp = true;
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const authenticate = useSelector((state: any) => state.auth.authenticated);
+
+  const loading = useSelector((state: any) => state.auth.loading);
 
   const { register, handleSubmit } = useForm();
 
@@ -28,16 +30,12 @@ const Login: React.FC = () => {
     }
   };
 
-  let authRedirect = null;
-
 
   if (authenticate) {
-    authRedirect = <Redirect to={'/main'} />;
+    history.push('/main');
   }
-
-  return (
+  return ((loading ? <Spinner /> :
     <Card className={'login'}>
-      {authRedirect}
       <form onSubmit={handleSubmit(clickHandler)}>
         <div
           className={'control'}
@@ -65,10 +63,10 @@ const Login: React.FC = () => {
           <Button type="submit" className={'btn'}>
             Log in
           </Button>
-          <Link className={'link'} to="/register">Switch to Register</Link>
+          <Link className={'btn_login'} to="/register">Switch to Register</Link>
         </div>
       </form>
-    </Card>);
+    </Card>));
 
 };
 

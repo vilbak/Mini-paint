@@ -22,6 +22,7 @@ const store = createStore(combineReducers({
     tools: toolsReducer,
     paint: paintReducer,
   }),
+
   composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 

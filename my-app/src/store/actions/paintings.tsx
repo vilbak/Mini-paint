@@ -18,7 +18,7 @@ export const addPainting = (painting: any) => (
 
 export const setPaintings = (paintings: any) => ({
   type: actionTypes.SET_PAINTINGS,
-  paintings,
+  payload: { paintings },
 
 });
 
